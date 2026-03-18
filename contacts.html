@@ -53,6 +53,72 @@
       width: 100%;
     }
 
+    .contact-glass-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 30px;
+      padding: 3rem;
+      transition: all 0.4s var(--ease-athletic);
+      opacity: 0;
+      transform: translateY(30px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-glass-card.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-glass-card:hover {
+      transform: translateY(-12px);
+      background: rgba(255, 255, 255, 0.9);
+      border-color: var(--brand-blue);
+      box-shadow: 0 25px 50px rgba(0, 120, 208, 0.25), 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control {
+      background: rgba(232, 232, 232, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 15px;
+      padding: 0.8rem 1.2rem;
+      transition: all 0.3s var(--ease-athletic);
+    }
+
+    .form-control:focus {
+      background: white;
+      border-color: var(--brand-blue);
+      box-shadow: 0 10px 20px rgba(0, 120, 208, 0.1);
+    }
+
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      color: var(--brand-blue);
+      border-radius: 15px;
+      text-decoration: none;
+      font-size: 1.5rem;
+      transition: all 0.3s var(--ease-athletic);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .social-btn:hover {
+      transform: translateY(-5px) rotate(8deg);
+      background: var(--brand-blue);
+      color: white;
+      box-shadow: 0 10px 20px rgba(0, 120, 208, 0.2);
+    }
+
+    .info-item i {
+      font-size: 1.5rem;
+      color: var(--brand-blue);
+      margin-right: 15px;
+    }
+
     @media (max-width: 991.98px) {
       .navbar-collapse {
         position: absolute;
@@ -74,6 +140,7 @@
   <div id="squares-container">
     <canvas id="squaresCanvas"></canvas>
   </div>
+
   <header class="sticky-top pt-4 pb-2">
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-25 border border-white border-opacity-50 shadow rounded-pill container-fluid mx-auto px-4"
@@ -99,7 +166,7 @@
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="team.html">Meet the Team</a></li>
           <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link active" href="">Contact</a></li>
         </ul>
       </div>
       <div class="d-none d-lg-flex" style="flex: 1; justify-content: flex-end;">
@@ -111,11 +178,73 @@
       </div>
     </nav>
   </header>
-  <main class="container my-5 py-5">
-    <div class="text-center mb-5">
-      <h1 class="display-4 fw-bold">Contact</h1>
+<div class="text-center my-5 py-5">
+    <h1 class="display-4 mt-2 fw-bold">Contact Us</h1>
+  </div>
+  <main class="container mb-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="contact-glass-card" id="contactCard">
+          <div class="row g-5">
+            <div class="col-md-6">
+              <h2 class="fw-bold mb-4">Send us a Message</h2>
+              <form id="contactForm">
+                <div class="mb-3">
+                  <label class="form-label small fw-bold text-muted">Full Name</label>
+                  <input type="text" class="form-control" placeholder="Full Name" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small fw-bold text-muted">Email Address</label>
+                  <input type="email" class="form-control" placeholder="packandprep@gmail.com" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small fw-bold text-muted">Message</label>
+                  <textarea class="form-control" rows="4" placeholder="How can we help you stay organized?"
+                    required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 rounded-pill py-3 fw-bold mt-2"
+                  style="background-color: var(--brand-blue); border: none;">
+                  Send Message <i class="bi bi-send-fill ms-2"></i>
+                </button>
+              </form>
+            </div>
+
+            <div class="col-md-6 border-start ps-md-5">
+              <h2 class="fw-bold mb-4">Connect with Us</h2>
+              <p class="text-muted mb-5">Have questions about our packs? We are here to help you prepare for success.
+              </p>
+
+              <div class="mb-5">
+                <div class="info-item d-flex align-items-center mb-3">
+                  <i class="bi bi-telephone-fill"></i>
+                  <div>
+                    <p class="mb-0 small fw-bold text-muted">Contact Number</p>
+                    <p class="mb-0 fw-bold">0933-041-5489</p>
+                  </div>
+                </div>
+                <div class="info-item d-flex align-items-center">
+                  <i class="bi bi-envelope-at-fill"></i>
+                  <div>
+                    <p class="mb-0 small fw-bold text-muted">Email</p>
+                    <p class="mb-0 fw-bold">packandprep@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+
+              <h6 class="fw-bold text-uppercase small text-muted mb-3" style="letter-spacing: 2px;">Social Media</h6>
+              <div class="d-flex gap-3">
+                <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="social-btn"><i class="bi bi-tiktok"></i></a>
+                <a href="#" class="social-btn"><i class="bi bi-twitter-x"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
+
   <footer class="bg-light pt-5 pb-4 mt-auto border-top" id="contact">
     <div class="container">
       <div class="row justify-content-between g-4">
@@ -124,8 +253,7 @@
             <img src="logo.png" alt="Logo" height="40" class="me-2">
             <h4 class="fw-bold mb-0">Pack & Prep</h4>
           </div>
-          <p class="text-muted">Empowering students with quality supplies. At Pack & Prep, we believe that
-            preparation
+          <p class="text-muted">Empowering students with quality supplies. At Pack & Prep, we believe that preparation
             is the key to academic success.
           </p>
           <div class="d-flex gap-3 mt-3">
@@ -139,20 +267,20 @@
             <li><a href="index.html" class="text-muted text-decoration-none">Home</a></li>
             <li><a href="team.html" class="text-muted text-decoration-none">Meet the Team</a></li>
             <li><a href="products.html" class="text-muted text-decoration-none">Products</a></li>
-            <li><a href="#" class="text-muted text-decoration-none">Contact</a></li>
+            <li><a href="contacts.html" class="text-muted text-decoration-none">Contact</a></li>
           </ul>
         </div>
       </div>
       <p class="text-center text-muted small mt-5 pt-4 border-top">© 2026 Pack & Prep. All rights reserved.</p>
     </div>
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     window.addEventListener('load', () => {
-      document.querySelectorAll('.team-card').forEach(card => {
-        card.classList.add('revealed');
-      });
+      document.getElementById('contactCard').classList.add('revealed');
     });
+
     (function () {
       const canvas = document.getElementById('squaresCanvas');
       const ctx = canvas.getContext('2d');
@@ -163,12 +291,14 @@
       let gridOffset = { x: 0, y: 0 };
       let mouseX_val = -100;
       let mouseY_val = -100;
+
       const resizeCanvas = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       };
       window.addEventListener('resize', resizeCanvas);
       resizeCanvas();
+
       const drawGrid = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const startX = -squareSize + (gridOffset.x % squareSize);
@@ -186,16 +316,19 @@
           }
         }
       };
+
       const animate = () => {
         gridOffset.x -= speed;
         gridOffset.y -= speed;
         drawGrid();
         requestAnimationFrame(animate);
       };
+
       window.addEventListener('mousemove', (e) => {
         mouseX_val = e.clientX;
         mouseY_val = e.clientY;
       });
+
       window.addEventListener('mouseleave', () => {
         mouseX_val = -100; mouseY_val = -100;
       });

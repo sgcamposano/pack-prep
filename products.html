@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pack & Prep</title>
+  <title>Pack & Prep - Products</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
 
     body {
       font-family: 'Satoshi', sans-serif;
-      background: #e9e9e9;
+      background: #eeeeee;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
@@ -26,6 +26,7 @@
       min-height: 100vh;
     }
 
+    /* Full Background Container */
     #squares-container {
       position: fixed;
       top: 0;
@@ -63,7 +64,9 @@
       width: 100%;
     }
 
-    #cart-count {
+    /* Cart Badge Animation */
+    #cart-count,
+    #cart-count-mobile {
       transition: transform 0.3s var(--ease-athletic);
       display: inline-block;
     }
@@ -72,6 +75,7 @@
       transform: scale(1.4);
     }
 
+    /* Card Styling */
     .product-card {
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
@@ -122,16 +126,18 @@
   <div id="squares-container">
     <canvas id="squaresCanvas"></canvas>
   </div>
+
   <header class="sticky-top pt-4 pb-2">
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-25 border border-white border-opacity-50 shadow rounded-pill container-fluid mx-auto px-4"
       style="backdrop-filter: blur(12px); max-width: 1200px; display: flex; align-items: center;">
 
       <div style="flex: 1; display: flex; justify-content: flex-start;">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.html">
           <img src="logo.png" alt="Logo" style="height: 50px;">
         </a>
       </div>
+
       <div class="d-lg-none d-flex align-items-center gap-3">
         <a href="cart.html" class="position-relative text-decoration-none text-primary">
           <i class="bi bi-cart3 fs-4"></i>
@@ -143,14 +149,16 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
+
       <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
         <ul class="navbar-nav gap-lg-4 text-center fs-5 align-items-center">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="team.html">Meet the Team</a></li>
-          <li class="nav-item"><a class="nav-link active" href="">Products</a></li>
+          <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
           <li class="nav-item"><a class="nav-link" href="contacts.html">Contact</a></li>
         </ul>
       </div>
+
       <div class="d-none d-lg-flex" style="flex: 1; justify-content: flex-end;">
         <a href="cart.html" class="position-relative p-2 text-decoration-none" style="display: inline-block;">
           <i class="bi bi-cart3 fs-4 text-dark"></i>
@@ -160,13 +168,16 @@
       </div>
     </nav>
   </header>
+
   <main class="container my-5 py-5" id="products">
     <div class="text-center mb-5">
       <h1 class="display-4 fw-bold">Our Products</h1>
       <p class="text-muted lead">Smartly packed essentials tailored for every stage of your academic journey.</p>
     </div>
-    <h3 class="fw-bold mb-4">Bundles</h3>
+
+    <h3 class="fw-bold mb-4 text-center text-lg-start">Bundles</h3>
     <div class="row g-4 mb-5 justify-content-center">
+
       <div class="col-md-6 col-lg-4">
         <div class="p-4 product-card d-flex flex-column h-100" style="border: 2px dashed var(--brand-blue);">
           <div class="d-flex justify-content-center mb-4">
@@ -176,8 +187,9 @@
             </div>
           </div>
           <h4 class="fw-bold mb-2 text-center">Custom Pack</h4>
-          <p class="text-muted small mb-3 text-center">Select your preferred items to build a personalized
-            stationery bundle.</p>
+          <p class="text-muted small mb-3 text-center">Select your preferred items to build a personalized stationery
+            bundle.</p>
+
           <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Choose Items:</h6>
           <div class="custom-selection-list mb-4 flex-grow-1 overflow-auto pe-1" style="max-height: 200px;">
             <div class="form-check small mb-1">
@@ -186,9 +198,9 @@
               <label class="form-check-label" for="custom1">Yellow Pad (₱60)</label>
             </div>
             <div class="form-check small mb-1">
-              <input class="form-check-input custom-item-checkbox" type="checkbox" value="70" data-name="Notebook"
-                id="custom2">
-              <label class="form-check-label" for="custom2">Notebook (₱70)</label>
+              <input class="form-check-input custom-item-checkbox" type="checkbox" value="70"
+                data-name="Orions Notebook" id="custom2">
+              <label class="form-check-label" for="custom2">Orions Notebook (₱70)</label>
             </div>
             <div class="form-check small mb-1">
               <input class="form-check-input custom-item-checkbox" type="checkbox" value="70" data-name="Pilot G-TEC"
@@ -196,19 +208,38 @@
               <label class="form-check-label" for="custom3">Pilot G-TEC (₱70)</label>
             </div>
             <div class="form-check small mb-1">
-              <input class="form-check-input custom-item-checkbox" type="checkbox" value="27" data-name="Eraser"
+              <input class="form-check-input custom-item-checkbox" type="checkbox" value="27" data-name="Mongol Eraser"
                 id="custom4">
-              <label class="form-check-label" for="custom4">Eraser (₱27)</label>
+              <label class="form-check-label" for="custom4">Mongol Eraser (₱27)</label>
             </div>
             <div class="form-check small mb-1">
               <input class="form-check-input custom-item-checkbox" type="checkbox" value="27"
                 data-name="Correction Tape" id="custom5">
               <label class="form-check-label" for="custom5">Correction Tape (₱27)</label>
             </div>
+            <div class="form-check small mb-1">
+              <input class="form-check-input custom-item-checkbox" type="checkbox" value="40" data-name="Marker"
+                id="custom6">
+              <label class="form-check-label" for="custom6">Marker (₱40)</label>
+            </div>
+            <div class="form-check small mb-1">
+              <input class="form-check-input custom-item-checkbox" type="checkbox" value="70" data-name="Highlighter"
+                id="custom7">
+              <label class="form-check-label" for="custom7">Highlighter (₱70)</label>
+            </div>
+            <div class="form-check small mb-1">
+              <input class="form-check-input custom-item-checkbox" type="checkbox" value="50" data-name="Flash Cards"
+                id="custom8">
+              <label class="form-check-label" for="custom8">Flash Cards (₱50)</label>
+            </div>
+            <div class="form-check small mb-1">
+              <input class="form-check-input custom-item-checkbox" type="checkbox" value="50" data-name="Sticky Notes"
+                id="custom9">
+              <label class="form-check-label" for="custom9">Sticky Notes (₱50)</label>
+            </div>
           </div>
           <div class="mt-auto d-flex align-items-center justify-content-between gap-2 border-top pt-3">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1" id="add-custom-to-cart">Add
-              Custom</button>
+            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1" id="add-custom-to-cart">Add Custom</button>
             <span class="fw-bold text-primary" id="live-custom-total">₱0.00</span>
           </div>
         </div>
@@ -294,7 +325,7 @@
               class="rounded-circle border border-2">
           </div>
           <h4 class="fw-bold mb-2">Research/Thesis Pack</h4>
-          <p class="text-muted small mb-3">A specialized academic pack designed for students working on research
+          <p class="text-muted small mb-3">A specialized academic pack designed for students working on researc
             papers and thesis writing.</p>
           <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Includes:</h6>
           <ul class="list-unstyled mb-4 flex-grow-1">
@@ -312,7 +343,7 @@
         </div>
       </div>
     </div>
-    <h3 class="fw-bold mb-4">Individual Essentials</h3>
+    <h3 class="fw-bold mb-4 text-center text-lg-start">Individual Essentials</h3>
     <div class="row g-4 justify-content-center">
       <div class="col-md-6 col-lg-3">
         <div class="p-4 product-card d-flex flex-column h-100">
@@ -433,6 +464,7 @@
       </div>
     </div>
   </main>
+
   <footer class="bg-light pt-5 pb-4 mt-auto border-top" id="contact">
     <div class="container">
       <div class="row justify-content-between g-4">
@@ -442,8 +474,7 @@
             <h4 class="fw-bold mb-0">Pack & Prep</h4>
           </div>
           <p class="text-muted">Empowering students with quality supplies. At Pack & Prep, we believe that preparation
-            is the key to academic success.
-          </p>
+            is the key to academic success.</p>
           <div class="d-flex gap-3 mt-3">
             <a href="#" class="text-primary fs-5"><i class="bi bi-facebook"></i></a>
             <a href="#" class="text-primary fs-5"><i class="bi bi-instagram"></i></a>
@@ -462,75 +493,78 @@
       <p class="text-center text-muted small mt-5 pt-4 border-top">© 2026 Pack & Prep. All rights reserved.</p>
     </div>
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    document.querySelectorAll('.custom-item-checkbox').forEach(checkbox => {
-      checkbox.addEventListener('change', () => {
-        let total = 0;
-        document.querySelectorAll('.custom-item-checkbox:checked').forEach(cb => {
-          total += parseFloat(cb.value);
-        });
-        document.getElementById('live-custom-total').innerText = `₱${total.toFixed(2)}`;
-      });
-    });
-    document.getElementById('add-custom-to-cart').addEventListener('click', function () {
-      const selected = document.querySelectorAll('.custom-item-checkbox:checked');
-      if (selected.length === 0) {
-        alert("Please select at least one item!");
-        return;
-      }
-      let total = 0;
-      let names = [];
-      selected.forEach(cb => {
-        total += parseFloat(cb.value);
-        names.push(cb.getAttribute('data-name'));
-      });
-      const customPack = {
-        name: "Custom Pack (" + names.join(', ') + ")",
-        price: total,
-        image: "logo.png",
-        quantity: 1
-      };
-      addToCart(customPack);
-      this.innerText = "Pack Added!";
-      this.classList.replace('btn-primary', 'btn-success');
-      setTimeout(() => {
-        this.innerText = "Add Custom";
-        this.classList.replace('btn-success', 'btn-primary');
-      }, 1000);
-    });
     document.addEventListener("DOMContentLoaded", () => {
       updateCartBadge();
+
+      // --- 1. FIXED CUSTOM PACK LOGIC ---
+      const customChecks = document.querySelectorAll('.custom-item-checkbox');
+      const liveTotalDisplay = document.getElementById('live-custom-total');
+      const addCustomBtn = document.getElementById('add-custom-to-cart');
+
+      // Update total price when checking items
+      customChecks.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          let total = 0;
+          document.querySelectorAll('.custom-item-checkbox:checked').forEach(cb => {
+            total += parseFloat(cb.value);
+          });
+          liveTotalDisplay.innerText = `₱${total.toFixed(2)}`;
+        });
+      });
+
+      // Handle Add Custom Pack button
+      if (addCustomBtn) {
+        addCustomBtn.addEventListener('click', function () {
+          const selected = document.querySelectorAll('.custom-item-checkbox:checked');
+          if (selected.length === 0) {
+            alert("Please select at least one item!");
+            return;
+          }
+
+          let total = 0;
+          let names = [];
+          selected.forEach(cb => {
+            total += parseFloat(cb.value);
+            names.push(cb.getAttribute('data-name'));
+          });
+
+          const customPack = {
+            name: "Custom Pack (" + names.join(', ') + ")",
+            price: total,
+            image: "logo.png",
+            quantity: 1
+          };
+
+          addToCart(customPack);
+          showFeedback(this, "Pack Added!");
+
+          // Reset
+          selected.forEach(cb => cb.checked = false);
+          liveTotalDisplay.innerText = "₱0.00";
+        });
+      }
+
+      // --- 2. STANDARD PRODUCT LOGIC ---
       const addButtons = document.querySelectorAll('.add-to-cart');
       addButtons.forEach(button => {
         button.addEventListener('click', (e) => {
           const card = e.target.closest('.product-card');
           const productName = card.querySelector('h4').innerText;
-          const productPrice = parseFloat(card.querySelector('.price-tag').innerText.replace(/[^\d.]/g, ''));
+          const productPriceText = card.querySelector('.price-tag').innerText;
+          const productPrice = parseFloat(productPriceText.replace(/[^\d.]/g, ''));
           const productImage = card.querySelector('img').getAttribute('src');
-          const product = {
-            name: productName,
-            price: productPrice,
-            image: productImage,
-            quantity: 1
-          };
-          addToCart(product);
-          const cartBadge = document.getElementById('cart-count');
-          if (cartBadge) {
-            cartBadge.classList.add('bump');
-            setTimeout(() => cartBadge.classList.remove('bump'), 300);
-          }
-          const originalText = button.innerText;
-          button.innerText = "Added!";
-          button.classList.replace('btn-primary', 'btn-success');
 
-          setTimeout(() => {
-            button.innerText = originalText;
-            button.classList.replace('btn-success', 'btn-primary');
-          }, 1000);
+          const product = { name: productName, price: productPrice, image: productImage, quantity: 1 };
+          addToCart(product);
+          showFeedback(button, "Added!");
         });
       });
     });
+
+    // Helper: Add to LocalStorage
     function addToCart(product) {
       let cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
       const existingItemIndex = cart.findIndex(item => item.name === product.name);
@@ -541,26 +575,41 @@
       }
       localStorage.setItem('shoppingCart', JSON.stringify(cart));
       updateCartBadge();
+      animateBadge();
     }
+
+    // Helper: Badge UI Updates
     function updateCartBadge() {
       const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
       const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-      const badge = document.getElementById('cart-count');
-      const badgeMobile = document.getElementById('cart-count-mobile');
+      const b1 = document.getElementById('cart-count');
+      const b2 = document.getElementById('cart-count-mobile');
+
       if (totalItems > 0) {
-        if (badge) {
-          badge.innerText = totalItems;
-          badge.style.display = 'block';
-        }
-        if (badgeMobile) {
-          badgeMobile.innerText = totalItems;
-          badgeMobile.style.display = 'block';
-        }
+        if (b1) { b1.innerText = totalItems; b1.style.display = 'block'; }
+        if (b2) { b2.innerText = totalItems; b2.style.display = 'block'; }
       } else {
-        if (badge) badge.style.display = 'none';
-        if (badgeMobile) badgeMobile.style.display = 'none';
+        if (b1) b1.style.display = 'none';
+        if (b2) b2.style.display = 'none';
       }
     }
+
+    function animateBadge() {
+      const b1 = document.getElementById('cart-count');
+      if (b1) { b1.classList.add('bump'); setTimeout(() => b1.classList.remove('bump'), 300); }
+    }
+
+    function showFeedback(btn, text) {
+      const original = btn.innerText;
+      btn.innerText = text;
+      btn.classList.replace('btn-primary', 'btn-success');
+      setTimeout(() => {
+        btn.innerText = original;
+        btn.classList.replace('btn-success', 'btn-primary');
+      }, 1000);
+    }
+
+    // Full BG Grid Animation
     (function () {
       const canvas = document.getElementById('squaresCanvas');
       const ctx = canvas.getContext('2d');
@@ -568,13 +617,15 @@
       const speed = 0.5;
       let gridOffset = { x: 0, y: 0 };
       let mouseX = -100, mouseY = -100;
-      const resizeCanvas = () => {
+
+      const resize = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       };
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
-      const drawGrid = () => {
+      window.addEventListener('resize', resize);
+      resize();
+
+      const draw = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const startX = -squareSize + (gridOffset.x % squareSize);
         const startY = -squareSize + (gridOffset.y % squareSize);
@@ -585,21 +636,19 @@
               ctx.fillRect(x, y, squareSize, squareSize);
             }
             ctx.strokeStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.lineWidth = 1;
             ctx.strokeRect(x, y, squareSize, squareSize);
           }
         }
       };
+
       const animate = () => {
         gridOffset.x -= speed;
         gridOffset.y -= speed;
-        drawGrid();
+        draw();
         requestAnimationFrame(animate);
       };
-      window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      });
+
+      window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
       animate();
     })();
   </script>

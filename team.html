@@ -17,7 +17,7 @@
 
     body {
       font-family: 'Satoshi', sans-serif;
-      background: #eeeeee;
+      background: #e9e9e9;
       margin: 0;
       padding: 0;
       overflow-x: hidden;
@@ -53,25 +53,23 @@
       width: 100%;
     }
 
-    .team-card {
+    .glass-card {
       background: rgba(255, 255, 255, 0.6);
       backdrop-filter: blur(10px);
       border: 2px solid rgba(255, 255, 255, 0.8);
       border-radius: 30px;
       padding: 2rem;
       transition: all 0.4s var(--ease-athletic);
-      position: relative;
-      overflow: hidden;
       opacity: 0;
       transform: translateY(30px);
     }
 
-    .team-card.revealed {
+    .glass-card.revealed {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .team-card:hover {
+    .glass-card:hover {
       transform: translateY(-12px);
       background: rgba(255, 255, 255, 0.9);
       border-color: var(--brand-blue);
@@ -87,7 +85,7 @@
       transition: transform 0.4s var(--ease-athletic);
     }
 
-    .team-card:hover .member-img {
+    .glass-card:hover .member-img {
       transform: scale(1.05) rotate(2deg);
     }
 
@@ -160,14 +158,35 @@
       </div>
     </nav>
   </header>
+  <div class="text-center mb-2 mt-5">
+    <h1 class="display-4 fw-bold">About Us</h1>
+  </div>
   <main class="container my-5 py-5">
+    <div class="row g-4 mb-5 justify-content-center">
+      <div class="col-md-5">
+        <div class="glass-card h-100 text-center">
+          <div class="mb-3 text-primary"><i class="bi bi-rocket-takeoff fs-1"></i></div>
+          <h2 class="fw-bold h4 text-uppercase mb-3" style="letter-spacing: 2px;">Our Mission</h2>
+          <p class="text-muted">To help students succeed by offering affordable, organized, and practical supply bundles
+            designed for different academic needs.</p>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="glass-card h-100 text-center">
+          <div class="mb-3 text-primary"><i class="bi bi-eye fs-1"></i></div>
+          <h2 class="fw-bold h4 text-uppercase mb-3" style="letter-spacing: 2px;">Our Vision</h2>
+          <p class="text-muted">To become a trusted student supply store that provides convenient and ready-to-use
+            academic supply packs.</p>
+        </div>
+      </div>
+    </div>
     <div class="text-center mb-5">
       <h1 class="display-4 fw-bold">Meet the Team</h1>
       <p class="text-muted fs-5">The individuals behind Pack & Prep</p>
     </div>
     <div class="row g-4 justify-content-center">
       <div class="col-sm-6 col-lg-4 text-center">
-        <div class="team-card h-100 d-flex flex-column align-items-center" style="transition-delay: 0.1s;">
+        <div class="glass-card h-100 d-flex flex-column align-items-center" style="transition-delay: 0.1s;">
           <img src="customer1.png" class="member-img mb-3" alt="CEO">
           <h5 class="fw-bold mb-1">Mark Justin Miñoza</h5>
           <p class="text-primary small fw-bold mb-3">Founder & CEO</p>
@@ -180,7 +199,7 @@
         </div>
       </div>
       <div class="col-sm-6 col-lg-4 text-center">
-        <div class="team-card h-100 d-flex flex-column align-items-center" style="transition-delay: 0.2s;">
+        <div class="glass-card h-100 d-flex flex-column align-items-center" style="transition-delay: 0.2s;">
           <img src="customer2.png" class="member-img mb-3" alt="Operations Manager">
           <h5 class="fw-bold mb-1">Keneth D. Ngalot</h5>
           <p class="text-primary small fw-bold mb-3">Co-Founder/Operations Manager</p>
@@ -203,8 +222,7 @@
             <h4 class="fw-bold mb-0">Pack & Prep</h4>
           </div>
           <p class="text-muted">Empowering students with quality supplies. At Pack & Prep, we believe that preparation
-            is the key to academic success.
-          </p>
+            is the key to academic success.</p>
           <div class="d-flex gap-3 mt-3">
             <a href="#" class="text-primary fs-5"><i class="bi bi-facebook"></i></a>
             <a href="#" class="text-primary fs-5"><i class="bi bi-instagram"></i></a>
@@ -226,10 +244,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     window.addEventListener('load', () => {
-      document.querySelectorAll('.team-card').forEach(card => {
+      document.querySelectorAll('.glass-card').forEach(card => {
         card.classList.add('revealed');
       });
     });
+
     (function () {
       const canvas = document.getElementById('squaresCanvas');
       const ctx = canvas.getContext('2d');
@@ -237,15 +256,20 @@
       const speed = 0.5;
       const borderColor = 'rgba(0, 0, 0, 0.05)';
       const hoverFillColor = 'rgba(255, 255, 255, 0.5)';
-      let gridOffset = { x: 0, y: 0 };
+      let gridOffset = {
+        x: 0,
+        y: 0
+      };
       let mouseX_val = -100;
       let mouseY_val = -100;
+
       const resizeCanvas = () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       };
       window.addEventListener('resize', resizeCanvas);
       resizeCanvas();
+
       const drawGrid = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const startX = -squareSize + (gridOffset.x % squareSize);
@@ -263,18 +287,22 @@
           }
         }
       };
+
       const animate = () => {
         gridOffset.x -= speed;
         gridOffset.y -= speed;
         drawGrid();
         requestAnimationFrame(animate);
       };
+
       window.addEventListener('mousemove', (e) => {
         mouseX_val = e.clientX;
         mouseY_val = e.clientY;
       });
+
       window.addEventListener('mouseleave', () => {
-        mouseX_val = -100; mouseY_val = -100;
+        mouseX_val = -100;
+        mouseY_val = -100;
       });
       animate();
     })();

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGC Stationery Store - Products</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand-blue: #0078D0;
+      --ease-athletic: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    body {
+      font-family: 'Satoshi', sans-serif;
+      background: #eeeeee;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    #squares-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Navigation Styling */
+    .nav-link {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 5px;
+      left: 0;
+      background-color: var(--brand-blue);
+      transition: width 0.3s var(--ease-athletic);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Cart Badge Animation */
+    #cart-count {
+      transition: transform 0.3s var(--ease-athletic);
+      display: inline-block;
+    }
+
+    .bump {
+      transform: scale(1.4);
+    }
+
+    /* Product Card Styling */
+    .product-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 20px;
+      transition: all 0.4s var(--ease-athletic);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-12px);
+      background: rgba(255, 255, 255, 0.95);
+      border-color: var(--brand-blue);
+      box-shadow: 0 20px 40px rgba(0, 120, 208, 0.15);
+    }
+
+    .btn-primary {
+      background-color: var(--brand-blue);
+      border: none;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      background-color: #005a9e;
+    }
+
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        position: absolute;
+        top: 80px;
+        right: 15px;
+        width: 220px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border-radius: 25px;
+        padding: 1rem 0;
+        z-index: 1000;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="squares-container">
+    <canvas id="squaresCanvas"></canvas>
+  </div>
+
+  <header class="sticky-top pt-4 pb-2">
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-25 border border-white border-opacity-50 shadow rounded-pill container-fluid mx-auto px-3"
+      style="backdrop-filter: blur(12px); max-width: 1200px;">
+      <a class="navbar-brand" href="#">
+        <img src="logo.png" alt="Logo" style="height: 50px;">
+      </a>
+
+      <div class="d-lg-none ms-auto me-3 position-relative">
+        <a href="cart.html" class="text-decoration-none text-primary">
+          <i class="bi bi-cart3 fs-4"></i>
+          <span id="cart-count-mobile"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            style="font-size: 0.6rem; display: none;">0</span>
+        </a>
+      </div>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav gap-lg-4 text-center fs-5 align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="team.html">Meet the Team</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+          <li class="nav-item d-none d-lg-block ms-lg-3">
+            <a href="cart.html" class="position-relative p-2 text-decoration-none" style="display: inline-block;">
+              <i class="bi bi-cart3 fs-4 text-dark"></i>
+              <span id="cart-count"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                style="font-size: 0.7rem; display: none;">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container my-5 py-5" id="products">
+    <div class="text-center mb-5">
+      <h1 class="display-4 fw-bold">Our Products</h1>
+      <p class="text-muted lead">Smartly packed essentials tailored for every stage of your academic journey.</p>
+    </div>
+
+    <h3 class="fw-bold mb-4">Bundles</h3>
+    <div class="row g-4 mb-5 justify-content-center">
+            <div class="col-md-6 col-lg-4">
+              <div class="p-4 product-card d-flex flex-column h-100" style="border: 2px dashed var(--brand-blue);">
+                <div class="d-flex justify-content-center mb-4">
+                  <div class="rounded-circle border border-2 d-flex align-items-center justify-content-center bg-white"
+                    style="width: 150px; height: 150px;">
+                    <i class="bi bi-box-seam text-primary" style="font-size: 3.5rem;"></i>
+                  </div>
+                </div>
+                <h4 class="fw-bold mb-2 text-center">Custom Pack</h4>
+                <p class="text-muted small mb-3 text-center">Select your preferred items to build a personalized
+                  stationery bundle.</p>
+
+                <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Choose Items:</h6>
+                <div class="custom-selection-list mb-4 flex-grow-1 overflow-auto pe-1" style="max-height: 200px;">
+                  <div class="form-check small mb-1">
+                    <input class="form-check-input custom-item-checkbox" type="checkbox" value="60"
+                      data-name="Yellow Pad" id="custom1">
+                    <label class="form-check-label" for="custom1">Yellow Pad (₱60)</label>
+                  </div>
+                  <div class="form-check small mb-1">
+                    <input class="form-check-input custom-item-checkbox" type="checkbox" value="70" data-name="Notebook"
+                      id="custom2">
+                    <label class="form-check-label" for="custom2">Notebook (₱70)</label>
+                  </div>
+                  <div class="form-check small mb-1">
+                    <input class="form-check-input custom-item-checkbox" type="checkbox" value="70"
+                      data-name="Pilot G-TEC" id="custom3">
+                    <label class="form-check-label" for="custom3">Pilot G-TEC (₱70)</label>
+                  </div>
+                  <div class="form-check small mb-1">
+                    <input class="form-check-input custom-item-checkbox" type="checkbox" value="27" data-name="Eraser"
+                      id="custom4">
+                    <label class="form-check-label" for="custom4">Eraser (₱27)</label>
+                  </div>
+                  <div class="form-check small mb-1">
+                    <input class="form-check-input custom-item-checkbox" type="checkbox" value="27"
+                      data-name="Correction Tape" id="custom5">
+                    <label class="form-check-label" for="custom5">Correction Tape (₱27)</label>
+                  </div>
+                </div>
+
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2 border-top pt-3">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1" id="add-custom-to-cart">Add
+                    Custom</button>
+                  <span class="fw-bold text-primary" id="live-custom-total">₱0.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="1.jpg" alt="Class Starter Pack" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Class Starter Pack</h4>
+                <p class="text-muted small mb-3">A practical starter pack design for everyday classes. It contains
+                  essential school supplies that help students stay organized and ready for note taking.</p>
+
+                <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Products Included:</h6>
+                <ul class="list-unstyled mb-4 flex-grow-1">
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Victory Yellow Pad</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>2 Orions Notebooks</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Mongol 2 Pencil</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Mongol Sharpener</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Correction Tape</li>
+                </ul>
+
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱270.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="2.png" alt="Group Project Pack" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Group Project Pack</h4>
+                <p class="text-muted small mb-3">Perfect for brainstorming ideas, writing project, and completing group
+                  assignments efficiently with your classmates.</p>
+
+                <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Includes:</h6>
+                <ul class="list-unstyled mb-4 flex-grow-1">
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Manila Paper</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Permanent Marker</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>HBWOffice Stick-On Note
+                  </li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Faber-Castell Highlighter
+                  </li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Adhesive Tape</li>
+                </ul>
+
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱250.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="3.png" alt="Exam Week Pack" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Exam Week Pack</h4>
+                <p class="text-muted small mb-3">A study companion designed to help students highlight important
+                  lessons, review key concepts, and organize notes during exams.</p>
+
+                <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Includes:</h6>
+                <ul class="list-unstyled mb-4 flex-grow-1">
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Victory Yellow Pad</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Correction Tape</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Faber-Castell Highlighter
+                  </li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Index Card</li>
+                </ul>
+
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱320.00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="4.png" alt="Research Pack" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Research/Thesis Pack</h4>
+                <p class="text-muted small mb-3">A specialized academic pack designed for students working on research
+                  papers and thesis writing.</p>
+
+                <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Includes:</h6>
+                <ul class="list-unstyled mb-4 flex-grow-1">
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Legal Bond Paper</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Faber-Castell Highlighter
+                  </li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>¼ Index Card</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Victory Yellow Pad</li>
+                  <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
+                </ul>
+
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱300.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="fw-bold mb-4">Individual Essentials</h3>
+          <div class="row g-4 justify-content-center">
+            <div class="col-md-6 col-lg-3">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="yellowpad.png" alt="Yellow Pad" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Victory Yellow Pad</h4>
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱60.00</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="notebook.png" alt="Pilot Pen" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Orions Notebook</h4>
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱70.00</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="ballpen.png" alt="Highlighter" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Ballpen Pilot G-TEC</h4>
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱70.00</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="eraser.png" alt="Sticky Notes" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Mongol Eraser</h4>
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱27.00</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="tape.png" alt="Yellow Pad" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Correction Tape</h4>
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱27.00</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="marker.png" alt="Pilot Pen" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Marker</h4>
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱40.00</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="stickynotes.png" alt="Highlighter" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Sticky Notes</h4>
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱50.00</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="highlighter.png" alt="Sticky Notes" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Highlighter</h4>
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱70.00</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="p-4 product-card d-flex flex-column h-100">
+                <div class="d-flex justify-content-center mb-4">
+                  <img src="cards.png" alt="Yellow Pad" style="width: 150px; height: 150px; object-fit: cover;"
+                    class="rounded-circle border border-2">
+                </div>
+                <h4 class="fw-bold mb-2">Flash Cards</h4>
+                <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                  <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                  <span class="fw-bold text-primary price-tag">₱50.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+  </main>
+
+  <footer class="bg-light pt-5 pb-4 mt-auto border-top" id="contact">
+    <div class="container">
+      <div class="row justify-content-between g-4">
+        <div class="col-lg-5">
+          <div class="d-flex align-items-center mb-3">
+            <img src="logo.png" alt="Logo" height="40" class="me-2">
+            <h4 class="fw-bold mb-0">Pack & Prep</h4>
+          </div>
+          <p class="text-muted">Empowering students with quality supplies. At Pack & Prep, we believe that preparation
+            is the key to academic success.
+          </p>
+          <div class="d-flex gap-3 mt-3">
+            <a href="#" class="text-primary fs-5"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-primary fs-5"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-auto">
+          <h6 class="fw-bold mb-3">Quick Links</h6>
+          <ul class="list-unstyled d-flex flex-column gap-2">
+            <li><a href="index.html" class="text-muted text-decoration-none">Home</a></li>
+            <li><a href="team.html" class="text-muted text-decoration-none">Meet the Team</a></li>
+            <li><a href="products.html" class="text-muted text-decoration-none">Products</a></li>
+            <li><a href="contacts.html" class="text-muted text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-center text-muted small mt-5 pt-4 border-top">© 2026 Pack & Prep. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // 1. Update the Price when checkboxes are clicked
+    document.querySelectorAll('.custom-item-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        let total = 0;
+        document.querySelectorAll('.custom-item-checkbox:checked').forEach(cb => {
+          total += parseFloat(cb.value);
+        });
+        document.getElementById('live-custom-total').innerText = `₱${total.toFixed(2)}`;
+      });
+    });
+
+    // 2. Handle the "Add Custom" Button click
+    document.getElementById('add-custom-to-cart').addEventListener('click', function () {
+      const selected = document.querySelectorAll('.custom-item-checkbox:checked');
+
+      if (selected.length === 0) {
+        alert("Please select at least one item!");
+        return;
+      }
+
+      let total = 0;
+      let names = [];
+      selected.forEach(cb => {
+        total += parseFloat(cb.value);
+        names.push(cb.getAttribute('data-name'));
+      });
+
+      const customPack = {
+        name: "Custom Pack (" + names.join(', ') + ")",
+        price: total,
+        image: "logo.png", // Or any generic stationery icon
+        quantity: 1
+      };
+
+      // Call your existing addToCart function
+      addToCart(customPack);
+
+      // Feedback for the user
+      this.innerText = "Pack Added!";
+      this.classList.replace('btn-primary', 'btn-success');
+      setTimeout(() => {
+        this.innerText = "Add Custom";
+        this.classList.replace('btn-success', 'btn-primary');
+      }, 1000);
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+      updateCartBadge();
+
+      const addButtons = document.querySelectorAll('.add-to-cart');
+
+      addButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          const card = e.target.closest('.product-card');
+          const productName = card.querySelector('h4').innerText;
+          const productPrice = parseFloat(card.querySelector('.price-tag').innerText.replace(/[^\d.]/g, ''));
+          const productImage = card.querySelector('img').getAttribute('src');
+
+          const product = {
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: 1
+          };
+
+          addToCart(product);
+
+          // Animation Effect
+          const cartBadge = document.getElementById('cart-count');
+          if (cartBadge) {
+            cartBadge.classList.add('bump');
+            setTimeout(() => cartBadge.classList.remove('bump'), 300);
+          }
+
+          // Change button state temporarily
+          const originalText = button.innerText;
+          button.innerText = "Added!";
+          button.classList.replace('btn-primary', 'btn-success');
+
+          setTimeout(() => {
+            button.innerText = originalText;
+            button.classList.replace('btn-success', 'btn-primary');
+          }, 1000);
+        });
+      });
+    });
+
+    function addToCart(product) {
+      let cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+      const existingItemIndex = cart.findIndex(item => item.name === product.name);
+
+      if (existingItemIndex > -1) {
+        cart[existingItemIndex].quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem('shoppingCart', JSON.stringify(cart));
+      updateCartBadge();
+    }
+
+    function updateCartBadge() {
+      const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+      const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+      const badge = document.getElementById('cart-count');
+      const badgeMobile = document.getElementById('cart-count-mobile');
+
+      if (totalItems > 0) {
+        if (badge) {
+          badge.innerText = totalItems;
+          badge.style.display = 'block';
+        }
+        if (badgeMobile) {
+          badgeMobile.innerText = totalItems;
+          badgeMobile.style.display = 'block';
+        }
+      } else {
+        if (badge) badge.style.display = 'none';
+        if (badgeMobile) badgeMobile.style.display = 'none';
+      }
+    }
+
+    // Grid Animation Background
+    (function () {
+      const canvas = document.createElement('canvas');
+      canvas.id = 'squaresCanvas';
+      document.getElementById('squares-container').appendChild(canvas);
+      const ctx = canvas.getContext('2d');
+      const squareSize = 50;
+      const speed = 0.5;
+      const borderColor = 'rgba(0, 0, 0, 0.05)';
+      const hoverFillColor = 'rgba(255, 255, 255, 0.5)';
+      let gridOffset = { x: 0, y: 0 };
+      let mouseX_val = -100;
+      let mouseY_val = -100;
+
+      const resizeCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      };
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      const drawGrid = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const startX = -squareSize + (gridOffset.x % squareSize);
+        const startY = -squareSize + (gridOffset.y % squareSize);
+        for (let x = startX; x < canvas.width + squareSize; x += squareSize) {
+          for (let y = startY; y < canvas.height + squareSize; y += squareSize) {
+            if (mouseX_val >= x && mouseX_val < x + squareSize &&
+              mouseY_val >= y && mouseY_val < y + squareSize) {
+              ctx.fillStyle = hoverFillColor;
+              ctx.fillRect(x, y, squareSize, squareSize);
+            }
+            ctx.strokeStyle = borderColor;
+            ctx.lineWidth = 1;
+            ctx.strokeRect(x, y, squareSize, squareSize);
+          }
+        }
+      };
+
+      const animate = () => {
+        gridOffset.x -= speed;
+        gridOffset.y -= speed;
+        drawGrid();
+        requestAnimationFrame(animate);
+      };
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX_val = e.clientX;
+        mouseY_val = e.clientY;
+      });
+
+      animate();
+    })();
+  </script>
+</body>
+
+</html>

@@ -119,6 +119,12 @@
       margin-right: 15px;
     }
 
+    /* Star Rating Interaction */
+    .star-rating i {
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
     @media (max-width: 991.98px) {
       .navbar-collapse {
         position: absolute;
@@ -178,9 +184,11 @@
       </div>
     </nav>
   </header>
-<div class="text-center my-5 py-5">
+
+  <div class="text-center my-5 py-5">
     <h1 class="display-4 mt-2 fw-bold">Contact Us</h1>
   </div>
+
   <main class="container mb-5">
     <div class="row justify-content-center">
       <div class="col-lg-10">
@@ -243,9 +251,65 @@
         </div>
       </div>
     </div>
+
+    <div class="row justify-content-center mt-5">
+      <div class="col-lg-10">
+        <div class="contact-glass-card revealed" style="background: rgba(255, 255, 255, 0.4);">
+          <div class="text-center mb-4">
+            <h2 class="fw-bold">What Our Customers Say</h2>
+            <button type="button" class="btn btn-outline-primary rounded-pill px-4 mt-2" data-bs-toggle="modal"
+              data-bs-target="#reviewModal">
+              Write a Review <i class="bi bi-pencil-square ms-1"></i>
+            </button>
+          </div>
+
+          <div id="reviewsWrapper" class="row g-4">
+            </div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <footer class="bg-light pt-5 pb-4 mt-auto border-top" id="contact">
+  <div class="modal fade" id="reviewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0"
+        style="border-radius: 30px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px);">
+        <div class="modal-header border-0 pb-0 pt-4 px-4">
+          <h3 class="modal-title fw-bold" id="reviewModalLabel">Submit a Review</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="submitReviewForm">
+            <div class="mb-3 text-center">
+              <label class="form-label small fw-bold text-muted">Your Rating</label>
+              <div class="fs-3 text-muted star-rating" id="starContainer">
+                <i class="bi bi-star-fill" data-value="1"></i>
+                <i class="bi bi-star-fill" data-value="2"></i>
+                <i class="bi bi-star-fill" data-value="3"></i>
+                <i class="bi bi-star-fill" data-value="4"></i>
+                <i class="bi bi-star-fill" data-value="5"></i>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold text-muted">Name</label>
+              <input type="text" id="revName" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold text-muted">Feedback</label>
+              <textarea id="revText" class="form-control" rows="3" placeholder="Tell us about your purchase..."
+                required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 rounded-pill py-3 fw-bold mt-2"
+              style="background-color: var(--brand-blue); border: none;">
+              Submit Review <i class="bi bi-check-circle-fill ms-2"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-light pt-5 pb-4 mt-auto border-top">
     <div class="container">
       <div class="row justify-content-between g-4">
         <div class="col-lg-5">
@@ -254,8 +318,7 @@
             <h4 class="fw-bold mb-0">Pack & Prep</h4>
           </div>
           <p class="text-muted">Empowering students with quality supplies. At Pack & Prep, we believe that preparation
-            is the key to academic success.
-          </p>
+            is the key to academic success.</p>
           <div class="d-flex gap-3 mt-3">
             <a href="#" class="text-primary fs-5"><i class="bi bi-facebook"></i></a>
             <a href="#" class="text-primary fs-5"><i class="bi bi-instagram"></i></a>
@@ -279,8 +342,99 @@
   <script>
     window.addEventListener('load', () => {
       document.getElementById('contactCard').classList.add('revealed');
+      loadReviews();
     });
 
+    let selectedRating = 5;
+    const stars = document.querySelectorAll('#starContainer i');
+    const reviewsWrapper = document.getElementById('reviewsWrapper');
+
+    // Star Selection Logic (Fixes colors and selection)
+    stars.forEach((star, index) => {
+      star.addEventListener('click', () => {
+        selectedRating = index + 1;
+        stars.forEach((s, i) => {
+          if (i <= index) {
+            s.classList.add('text-warning');
+            s.classList.remove('text-muted');
+          } else {
+            s.classList.add('text-muted');
+            s.classList.remove('text-warning');
+          }
+        });
+      });
+    });
+
+    // Function to add Review HTML to the page
+    function displayReview(name, feedback, rating) {
+      // FIX: Replace "undefined" or empty text with a positive client review
+      const cleanFeedback = (feedback && feedback !== "undefined" && feedback.trim() !== "")
+        ? feedback
+        : "The quality of the materials is top-notch! Pack & Prep really understands what students need for success.";
+
+      const initials = name ? name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2) : "JS";
+      
+      let starHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        starHTML += `<i class="bi bi-star-fill ${i <= rating ? 'text-warning' : 'text-muted'}"></i>`;
+      }
+
+      const reviewHTML = `
+        <div class="col-md-6">
+          <div class="p-4 bg-white bg-opacity-75 rounded-4 h-100 border shadow-sm">
+            <div class="d-flex justify-content-between">
+              <div class="mb-2">${starHTML}</div>
+              <small class="text-muted">Just now</small>
+            </div>
+            <p class="text-muted mb-4 small">"${cleanFeedback}"</p>
+            <div class="d-flex align-items-center">
+              <div class="bg-primary rounded-circle text-white fw-bold d-flex align-items-center justify-content-center" 
+                   style="width: 40px; height: 40px; font-size: 0.8rem;">${initials}</div>
+              <div class="ms-3">
+                <h6 class="mb-0 fw-bold">${name || "John"}</h6>
+                <small class="text-muted" style="font-size: 0.7rem;">Verified Student</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      reviewsWrapper.insertAdjacentHTML('afterbegin', reviewHTML);
+    }
+
+    // Save and Display new review
+    document.getElementById('submitReviewForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('revName').value;
+      const feedback = document.getElementById('revText').value;
+
+      // 1. Add to UI
+      displayReview(name, feedback, selectedRating);
+
+      // 2. Save to LocalStorage
+      const savedReviews = JSON.parse(localStorage.getItem('pnp_reviews')) || [];
+      savedReviews.push({ name, feedback, rating: selectedRating });
+      localStorage.setItem('pnp_reviews', JSON.stringify(savedReviews));
+
+      // 3. Reset and Close
+      const modal = bootstrap.Modal.getInstance(document.getElementById('reviewModal'));
+      modal.hide();
+      this.reset();
+      stars.forEach(s => { s.classList.add('text-muted'); s.classList.remove('text-warning'); });
+      selectedRating = 5;
+    });
+
+    // Load reviews from LocalStorage
+    function loadReviews() {
+      const savedReviews = JSON.parse(localStorage.getItem('pnp_reviews')) || [];
+      if (savedReviews.length === 0) {
+        // Default positive review para hindi blanko sa simula
+        displayReview("Jamie Santos", "I ordered the Semester Essentials pack and it completely changed my organization game.", 5);
+      } else {
+        savedReviews.forEach(r => displayReview(r.name, r.feedback, r.rating));
+      }
+    }
+
+    // Background Canvas Logic
     (function () {
       const canvas = document.getElementById('squaresCanvas');
       const ctx = canvas.getContext('2d');

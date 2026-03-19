@@ -26,7 +26,6 @@
       min-height: 100vh;
     }
 
-    /* Full Background Container */
     #squares-container {
       position: fixed;
       top: 0;
@@ -64,7 +63,37 @@
       width: 100%;
     }
 
-    /* Cart Badge Animation */
+    .search-wrapper {
+      max-width: 500px;
+      margin: 0 auto 3rem auto;
+      position: relative;
+    }
+
+    .search-bar {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50px;
+      padding: 0.8rem 1.5rem 0.8rem 3rem;
+      transition: all 0.3s var(--ease-athletic);
+    }
+
+    .search-bar:focus {
+      background: white;
+      box-shadow: 0 10px 25px rgba(0, 120, 208, 0.15);
+      border-color: var(--brand-blue);
+      outline: none;
+    }
+
+    .search-wrapper i {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--brand-blue);
+      font-size: 1.2rem;
+    }
+
     #cart-count,
     #cart-count-mobile {
       transition: transform 0.3s var(--ease-athletic);
@@ -75,7 +104,6 @@
       transform: scale(1.4);
     }
 
-    /* Card Styling */
     .product-card {
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
@@ -175,293 +203,308 @@
       <p class="text-muted lead">Smartly packed essentials tailored for every stage of your academic journey.</p>
     </div>
 
-    <h3 class="fw-bold mb-4 text-center text-lg-start">Bundles</h3>
-    <div class="row g-4 mb-5 justify-content-center">
-
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 product-card d-flex flex-column h-100" style="border: 2px dashed var(--brand-blue);">
-          <div class="d-flex justify-content-center mb-4">
-            <div class="rounded-circle border border-2 d-flex align-items-center justify-content-center bg-white"
-              style="width: 150px; height: 150px;">
-              <i class="bi bi-box-seam text-primary" style="font-size: 3.5rem;"></i>
-            </div>
-          </div>
-          <h4 class="fw-bold mb-2 text-center">Custom Pack</h4>
-          <p class="text-muted small mb-3 text-center">Select your preferred items to build a personalized stationery
-            bundle.</p>
-
-          <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Choose Items:</h6>
-          <div class="custom-selection-list mb-4 flex-grow-1 overflow-auto pe-1" style="max-height: 200px;">
-            <div class="form-check small mb-1">
-              <input class="form-check-input custom-item-checkbox" type="checkbox" value="60" data-name="Yellow Pad"
-                id="custom1">
-              <label class="form-check-label" for="custom1">Yellow Pad (₱60)</label>
-            </div>
-            <div class="form-check small mb-1">
-              <input class="form-check-input custom-item-checkbox" type="checkbox" value="70"
-                data-name="Orions Notebook" id="custom2">
-              <label class="form-check-label" for="custom2">Orions Notebook (₱70)</label>
-            </div>
-            <div class="form-check small mb-1">
-              <input class="form-check-input custom-item-checkbox" type="checkbox" value="70" data-name="Pilot G-TEC"
-                id="custom3">
-              <label class="form-check-label" for="custom3">Pilot G-TEC (₱70)</label>
-            </div>
-            <div class="form-check small mb-1">
-              <input class="form-check-input custom-item-checkbox" type="checkbox" value="27" data-name="Mongol Eraser"
-                id="custom4">
-              <label class="form-check-label" for="custom4">Mongol Eraser (₱27)</label>
-            </div>
-            <div class="form-check small mb-1">
-              <input class="form-check-input custom-item-checkbox" type="checkbox" value="27"
-                data-name="Correction Tape" id="custom5">
-              <label class="form-check-label" for="custom5">Correction Tape (₱27)</label>
-            </div>
-            <div class="form-check small mb-1">
-              <input class="form-check-input custom-item-checkbox" type="checkbox" value="40" data-name="Marker"
-                id="custom6">
-              <label class="form-check-label" for="custom6">Marker (₱40)</label>
-            </div>
-            <div class="form-check small mb-1">
-              <input class="form-check-input custom-item-checkbox" type="checkbox" value="70" data-name="Highlighter"
-                id="custom7">
-              <label class="form-check-label" for="custom7">Highlighter (₱70)</label>
-            </div>
-            <div class="form-check small mb-1">
-              <input class="form-check-input custom-item-checkbox" type="checkbox" value="50" data-name="Flash Cards"
-                id="custom8">
-              <label class="form-check-label" for="custom8">Flash Cards (₱50)</label>
-            </div>
-            <div class="form-check small mb-1">
-              <input class="form-check-input custom-item-checkbox" type="checkbox" value="50" data-name="Sticky Notes"
-                id="custom9">
-              <label class="form-check-label" for="custom9">Sticky Notes (₱50)</label>
-            </div>
-          </div>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2 border-top pt-3">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1" id="add-custom-to-cart">Add Custom</button>
-            <span class="fw-bold text-primary" id="live-custom-total">₱0.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="1.jpg" alt="Class Starter Pack" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
-          </div>
-          <h4 class="fw-bold mb-2">Class Starter Pack</h4>
-          <p class="text-muted small mb-3">A practical starter pack design for everyday classes. It contains
-            essential school supplies that help students stay organized and ready for note taking.</p>
-          <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Products Included:</h6>
-          <ul class="list-unstyled mb-4 flex-grow-1">
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Victory Yellow Pad</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>2 Orions Notebooks</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Mongol 2 Pencil</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Mongol Sharpener</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Correction Tape</li>
-          </ul>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱270.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="2.png" alt="Group Project Pack" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
-          </div>
-          <h4 class="fw-bold mb-2">Group Project Pack</h4>
-          <p class="text-muted small mb-3">Perfect for brainstorming ideas, writing project, and completing group
-            assignments efficiently with your classmates.</p>
-          <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Includes:</h6>
-          <ul class="list-unstyled mb-4 flex-grow-1">
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Manila Paper</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Permanent Marker</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>HBWOffice Stick-On Note
-            </li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Faber-Castell Highlighter
-            </li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Adhesive Tape</li>
-          </ul>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱250.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="3.png" alt="Exam Week Pack" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
-          </div>
-          <h4 class="fw-bold mb-2">Exam Week Pack</h4>
-          <p class="text-muted small mb-3">A study companion designed to help students highlight important
-            lessons, review key concepts, and organize notes during exams.</p>
-          <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Includes:</h6>
-          <ul class="list-unstyled mb-4 flex-grow-1">
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Victory Yellow Pad</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Correction Tape</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Faber-Castell Highlighter
-            </li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Index Card</li>
-          </ul>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱320.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="4.png" alt="Research Pack" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
-          </div>
-          <h4 class="fw-bold mb-2">Research/Thesis Pack</h4>
-          <p class="text-muted small mb-3">A specialized academic pack designed for students working on researc
-            papers and thesis writing.</p>
-          <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Includes:</h6>
-          <ul class="list-unstyled mb-4 flex-grow-1">
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Legal Bond Paper</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Faber-Castell Highlighter
-            </li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>¼ Index Card</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Victory Yellow Pad</li>
-            <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
-          </ul>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱300.00</span>
-          </div>
-        </div>
-      </div>
+    <div class="search-wrapper">
+      <i class="bi bi-search"></i>
+      <input type="text" id="product-search" class="form-control search-bar" placeholder="Search products...">
     </div>
-    <h3 class="fw-bold mb-4 text-center text-lg-start">Individual Essentials</h3>
-    <div class="row g-4 justify-content-center">
-      <div class="col-md-6 col-lg-3">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="yellowpad.png" alt="Yellow Pad" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
+
+    <div id="no-results" class="text-center my-5 d-none">
+       <i class="bi bi-search fs-1 text-muted"></i>
+       <h4 class="mt-3 text-muted">No products found.</h4>
+    </div>
+
+    <div class="product-section" id="bundles-section">
+        <h3 class="fw-bold mb-4 text-center text-lg-start section-title">Bundles</h3>
+        <div class="row g-4 mb-5 justify-content-center product-list">
+    
+          <div class="col-md-6 col-lg-4 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100" style="border: 2px dashed var(--brand-blue);">
+              <div class="d-flex justify-content-center mb-4">
+                <div class="rounded-circle border border-2 d-flex align-items-center justify-content-center bg-white"
+                  style="width: 150px; height: 150px;">
+                  <i class="bi bi-box-seam text-primary" style="font-size: 3.5rem;"></i>
+                </div>
+              </div>
+              <h4 class="fw-bold mb-2 text-center">Custom Pack</h4>
+              <p class="text-muted small mb-3 text-center">Select your preferred items to build a personalized stationery
+                bundle.</p>
+    
+              <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Choose Items:</h6>
+              <div class="custom-selection-list mb-4 flex-grow-1 overflow-auto pe-1" style="max-height: 200px;">
+                <div class="form-check small mb-1">
+                  <input class="form-check-input custom-item-checkbox" type="checkbox" value="60" data-name="Yellow Pad"
+                    id="custom1">
+                  <label class="form-check-label" for="custom1">Yellow Pad (₱60)</label>
+                </div>
+                <div class="form-check small mb-1">
+                  <input class="form-check-input custom-item-checkbox" type="checkbox" value="70"
+                    data-name="Orions Notebook" id="custom2">
+                  <label class="form-check-label" for="custom2">Orions Notebook (₱70)</label>
+                </div>
+                <div class="form-check small mb-1">
+                  <input class="form-check-input custom-item-checkbox" type="checkbox" value="70" data-name="Pilot G-TEC"
+                    id="custom3">
+                  <label class="form-check-label" for="custom3">Pilot G-TEC (₱70)</label>
+                </div>
+                <div class="form-check small mb-1">
+                  <input class="form-check-input custom-item-checkbox" type="checkbox" value="27" data-name="Mongol Eraser"
+                    id="custom4">
+                  <label class="form-check-label" for="custom4">Mongol Eraser (₱27)</label>
+                </div>
+                <div class="form-check small mb-1">
+                  <input class="form-check-input custom-item-checkbox" type="checkbox" value="27"
+                    data-name="Correction Tape" id="custom5">
+                  <label class="form-check-label" for="custom5">Correction Tape (₱27)</label>
+                </div>
+                <div class="form-check small mb-1">
+                  <input class="form-check-input custom-item-checkbox" type="checkbox" value="40" data-name="Marker"
+                    id="custom6">
+                  <label class="form-check-label" for="custom6">Marker (₱40)</label>
+                </div>
+                <div class="form-check small mb-1">
+                  <input class="form-check-input custom-item-checkbox" type="checkbox" value="70" data-name="Highlighter"
+                    id="custom7">
+                  <label class="form-check-label" for="custom7">Highlighter (₱70)</label>
+                </div>
+                <div class="form-check small mb-1">
+                  <input class="form-check-input custom-item-checkbox" type="checkbox" value="50" data-name="Flash Cards"
+                    id="custom8">
+                  <label class="form-check-label" for="custom8">Flash Cards (₱50)</label>
+                </div>
+                <div class="form-check small mb-1">
+                  <input class="form-check-input custom-item-checkbox" type="checkbox" value="50" data-name="Sticky Notes"
+                    id="custom9">
+                  <label class="form-check-label" for="custom9">Sticky Notes (₱50)</label>
+                </div>
+              </div>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2 border-top pt-3">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1" id="add-custom-to-cart">Add Custom</button>
+                <span class="fw-bold text-primary" id="live-custom-total">₱0.00</span>
+              </div>
+            </div>
           </div>
-          <h4 class="fw-bold mb-2">Victory Yellow Pad</h4>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱60.00</span>
+          <div class="col-md-6 col-lg-4 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="1.jpg" alt="Class Starter Pack" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Class Starter Pack</h4>
+              <p class="text-muted small mb-3">A practical starter pack design for everyday classes. It contains
+                essential school supplies that help students stay organized and ready for note taking.</p>
+              <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Products Included:</h6>
+              <ul class="list-unstyled mb-4 flex-grow-1">
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Victory Yellow Pad</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>2 Orions Notebooks</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Mongol 2 Pencil</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Mongol Sharpener</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Correction Tape</li>
+              </ul>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱270.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="2.png" alt="Group Project Pack" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Group Project Pack</h4>
+              <p class="text-muted small mb-3">Perfect for brainstorming ideas, writing project, and completing group
+                assignments efficiently with your classmates.</p>
+              <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Includes:</h6>
+              <ul class="list-unstyled mb-4 flex-grow-1">
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Manila Paper</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Permanent Marker</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>HBWOffice Stick-On Note
+                </li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Faber-Castell Highlighter
+                </li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Adhesive Tape</li>
+              </ul>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱250.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="3.png" alt="Exam Week Pack" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Exam Week Pack</h4>
+              <p class="text-muted small mb-3">A study companion designed to help students highlight important
+                lessons, review key concepts, and organize notes during exams.</p>
+              <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Includes:</h6>
+              <ul class="list-unstyled mb-4 flex-grow-1">
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Victory Yellow Pad</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Correction Tape</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Faber-Castell Highlighter
+                </li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Index Card</li>
+              </ul>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱320.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="4.png" alt="Research Pack" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Research/Thesis Pack</h4>
+              <p class="text-muted small mb-3">A specialized academic pack designed for students working on researc
+                papers and thesis writing.</p>
+              <h6 class="fw-bold small text-uppercase mt-2 mb-2" style="letter-spacing: 1px;">Includes:</h6>
+              <ul class="list-unstyled mb-4 flex-grow-1">
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Legal Bond Paper</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>Faber-Castell Highlighter
+                </li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>¼ Index Card</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Victory Yellow Pad</li>
+                <li class="small mb-1"><i class="bi bi-check2-circle text-primary me-2"></i>1 Ballpen Pilot G-TEC</li>
+              </ul>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱300.00</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="notebook.png" alt="Pilot Pen" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
+    </div>
+
+    <div class="product-section" id="essentials-section">
+        <h3 class="fw-bold mb-4 text-center text-lg-start section-title">Individual Essentials</h3>
+        <div class="row g-4 justify-content-center product-list">
+          <div class="col-md-6 col-lg-3 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="yellowpad.png" alt="Yellow Pad" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Victory Yellow Pad</h4>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱60.00</span>
+              </div>
+            </div>
           </div>
-          <h4 class="fw-bold mb-2">Orions Notebook</h4>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱70.00</span>
+          <div class="col-md-6 col-lg-3 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="notebook.png" alt="Pilot Pen" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Orions Notebook</h4>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱70.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="ballpen.png" alt="Highlighter" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Ballpen Pilot G-TEC</h4>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱70.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="eraser.png" alt="Sticky Notes" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Mongol Eraser</h4>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱27.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="tape.png" alt="Yellow Pad" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Correction Tape</h4>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱27.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="marker.png" alt="Pilot Pen" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Marker</h4>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱40.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="stickynotes.png" alt="Highlighter" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Sticky Notes</h4>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱50.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="highlighter.png" alt="Sticky Notes" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Highlighter</h4>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱70.00</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 product-item">
+            <div class="p-4 product-card d-flex flex-column h-100">
+              <div class="d-flex justify-content-center mb-4">
+                <img src="cards.png" alt="Yellow Pad" style="width: 150px; height: 150px; object-fit: cover;"
+                  class="rounded-circle border border-2">
+              </div>
+              <h4 class="fw-bold mb-2">Flash Cards</h4>
+              <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
+                <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
+                <span class="fw-bold text-primary price-tag">₱50.00</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="ballpen.png" alt="Highlighter" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
-          </div>
-          <h4 class="fw-bold mb-2">Ballpen Pilot G-TEC</h4>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱70.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="eraser.png" alt="Sticky Notes" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
-          </div>
-          <h4 class="fw-bold mb-2">Mongol Eraser</h4>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱27.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="tape.png" alt="Yellow Pad" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
-          </div>
-          <h4 class="fw-bold mb-2">Correction Tape</h4>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱27.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="marker.png" alt="Pilot Pen" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
-          </div>
-          <h4 class="fw-bold mb-2">Marker</h4>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱40.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="stickynotes.png" alt="Highlighter" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
-          </div>
-          <h4 class="fw-bold mb-2">Sticky Notes</h4>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱50.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="highlighter.png" alt="Sticky Notes" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
-          </div>
-          <h4 class="fw-bold mb-2">Highlighter</h4>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱70.00</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="p-4 product-card d-flex flex-column h-100">
-          <div class="d-flex justify-content-center mb-4">
-            <img src="cards.png" alt="Yellow Pad" style="width: 150px; height: 150px; object-fit: cover;"
-              class="rounded-circle border border-2">
-          </div>
-          <h4 class="fw-bold mb-2">Flash Cards</h4>
-          <div class="mt-auto d-flex align-items-center justify-content-between gap-2">
-            <button class="btn btn-primary rounded-pill fw-bold flex-grow-1 add-to-cart">Add to Cart</button>
-            <span class="fw-bold text-primary price-tag">₱50.00</span>
-          </div>
-        </div>
-      </div>
     </div>
   </main>
 
@@ -499,12 +542,49 @@
     document.addEventListener("DOMContentLoaded", () => {
       updateCartBadge();
 
-      // --- 1. FIXED CUSTOM PACK LOGIC ---
+      const searchBar = document.getElementById('product-search');
+      const noResults = document.getElementById('no-results');
+      const productSections = document.querySelectorAll('.product-section');
+
+      searchBar.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        let anyVisible = false;
+
+        productSections.forEach(section => {
+          const items = section.querySelectorAll('.product-item');
+          let sectionVisible = false;
+
+          items.forEach(item => {
+            const productName = item.querySelector('h4').innerText.toLowerCase();
+            const productDesc = item.querySelector('p')?.innerText.toLowerCase() || "";
+
+            if (productName.includes(query) || productDesc.includes(query)) {
+              item.classList.remove('d-none');
+              sectionVisible = true;
+              anyVisible = true;
+            } else {
+              item.classList.add('d-none');
+            }
+          });
+
+          if (sectionVisible) {
+            section.classList.remove('d-none');
+          } else {
+            section.classList.add('d-none');
+          }
+        });
+
+        if (anyVisible) {
+          noResults.classList.add('d-none');
+        } else {
+          noResults.classList.remove('d-none');
+        }
+      });
+
       const customChecks = document.querySelectorAll('.custom-item-checkbox');
       const liveTotalDisplay = document.getElementById('live-custom-total');
       const addCustomBtn = document.getElementById('add-custom-to-cart');
 
-      // Update total price when checking items
       customChecks.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
           let total = 0;
@@ -515,7 +595,6 @@
         });
       });
 
-      // Handle Add Custom Pack button
       if (addCustomBtn) {
         addCustomBtn.addEventListener('click', function () {
           const selected = document.querySelectorAll('.custom-item-checkbox:checked');
@@ -541,13 +620,11 @@
           addToCart(customPack);
           showFeedback(this, "Pack Added!");
 
-          // Reset
           selected.forEach(cb => cb.checked = false);
           liveTotalDisplay.innerText = "₱0.00";
         });
       }
 
-      // --- 2. STANDARD PRODUCT LOGIC ---
       const addButtons = document.querySelectorAll('.add-to-cart');
       addButtons.forEach(button => {
         button.addEventListener('click', (e) => {
@@ -555,7 +632,7 @@
           const productName = card.querySelector('h4').innerText;
           const productPriceText = card.querySelector('.price-tag').innerText;
           const productPrice = parseFloat(productPriceText.replace(/[^\d.]/g, ''));
-          const productImage = card.querySelector('img').getAttribute('src');
+          const productImage = card.querySelector('img')?.getAttribute('src') || "logo.png";
 
           const product = { name: productName, price: productPrice, image: productImage, quantity: 1 };
           addToCart(product);
@@ -564,7 +641,6 @@
       });
     });
 
-    // Helper: Add to LocalStorage
     function addToCart(product) {
       let cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
       const existingItemIndex = cart.findIndex(item => item.name === product.name);
@@ -578,7 +654,6 @@
       animateBadge();
     }
 
-    // Helper: Badge UI Updates
     function updateCartBadge() {
       const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
       const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
@@ -609,7 +684,6 @@
       }, 1000);
     }
 
-    // Full BG Grid Animation
     (function () {
       const canvas = document.getElementById('squaresCanvas');
       const ctx = canvas.getContext('2d');

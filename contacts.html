@@ -172,6 +172,7 @@
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="team.html">Meet the Team</a></li>
           <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="status.html">Oder Status</a></li>
           <li class="nav-item"><a class="nav-link active" href="">Contact</a></li>
         </ul>
       </div>
@@ -349,7 +350,6 @@
     const stars = document.querySelectorAll('#starContainer i');
     const reviewsWrapper = document.getElementById('reviewsWrapper');
 
-    // Star Selection Logic (Fixes colors and selection)
     stars.forEach((star, index) => {
       star.addEventListener('click', () => {
         selectedRating = index + 1;
@@ -365,9 +365,7 @@
       });
     });
 
-    // Function to add Review HTML to the page
     function displayReview(name, feedback, rating) {
-      // FIX: Replace "undefined" or empty text with a positive client review
       const cleanFeedback = (feedback && feedback !== "undefined" && feedback.trim() !== "")
         ? feedback
         : "The quality of the materials is top-notch! Pack & Prep really understands what students need for success.";
@@ -401,21 +399,17 @@
       reviewsWrapper.insertAdjacentHTML('afterbegin', reviewHTML);
     }
 
-    // Save and Display new review
     document.getElementById('submitReviewForm').addEventListener('submit', function (e) {
       e.preventDefault();
       const name = document.getElementById('revName').value;
       const feedback = document.getElementById('revText').value;
 
-      // 1. Add to UI
       displayReview(name, feedback, selectedRating);
 
-      // 2. Save to LocalStorage
       const savedReviews = JSON.parse(localStorage.getItem('pnp_reviews')) || [];
       savedReviews.push({ name, feedback, rating: selectedRating });
       localStorage.setItem('pnp_reviews', JSON.stringify(savedReviews));
 
-      // 3. Reset and Close
       const modal = bootstrap.Modal.getInstance(document.getElementById('reviewModal'));
       modal.hide();
       this.reset();
@@ -423,18 +417,15 @@
       selectedRating = 5;
     });
 
-    // Load reviews from LocalStorage
     function loadReviews() {
       const savedReviews = JSON.parse(localStorage.getItem('pnp_reviews')) || [];
       if (savedReviews.length === 0) {
-        // Default positive review para hindi blanko sa simula
         displayReview("Jamie Santos", "I ordered the Semester Essentials pack and it completely changed my organization game.", 5);
       } else {
         savedReviews.forEach(r => displayReview(r.name, r.feedback, r.rating));
       }
     }
 
-    // Background Canvas Logic
     (function () {
       const canvas = document.getElementById('squaresCanvas');
       const ctx = canvas.getContext('2d');

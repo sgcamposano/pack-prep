@@ -176,6 +176,7 @@
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="team.html">Meet the Team</a></li>
           <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="status.html">Oder Status</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
       </div>
@@ -366,6 +367,33 @@
         }, 400);
       }
     }
+
+    document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const fullName = e.target.querySelector('input[type="text"]').value;
+      const address = e.target.querySelector('textarea').value;
+
+      const orderId = "PNP-" + Math.floor(10000 + Math.random() * 90000);
+
+      const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+
+      const orderData = {
+        orderId: orderId,
+        customerName: fullName,
+        shippingAddress: address,
+        items: cart,
+        status: "Processing",
+        date: new Date().toLocaleDateString()
+      };
+
+      localStorage.setItem('activeOrder', JSON.stringify(orderData));
+
+      alert("Order Confirmed! Your Order ID is: " + orderId);
+      localStorage.removeItem('shoppingCart');
+      window.location.href = 'status.html';
+    });
+
     (function () {
       const canvas = document.getElementById('squaresCanvas');
       const ctx = canvas.getContext('2d');

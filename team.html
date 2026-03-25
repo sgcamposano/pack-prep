@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pack & Prep</title>
+  <title>Pack & Prep - Meet the Team</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
@@ -58,7 +58,7 @@
       backdrop-filter: blur(10px);
       border: 2px solid rgba(255, 255, 255, 0.8);
       border-radius: 30px;
-      padding: 2rem;
+      padding: 2.5rem;
       transition: all 0.4s var(--ease-athletic);
       opacity: 0;
       transform: translateY(30px);
@@ -77,8 +77,8 @@
     }
 
     .member-img {
-      width: 130px;
-      height: 130px;
+      width: 150px;
+      height: 150px;
       object-fit: cover;
       border-radius: 25px;
       border: 4px solid white;
@@ -101,8 +101,10 @@
     }
 
     .supplier-logo {
-      height: 100px;
+      height: 60px;
+      margin-bottom: 1rem;
       transition: all 0.3s ease;
+      object-fit: contain;
     }
 
     @media (max-width: 991.98px) {
@@ -126,12 +128,13 @@
   <div id="squares-container">
     <canvas id="squaresCanvas"></canvas>
   </div>
+
   <header class="sticky-top pt-4 pb-2">
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-25 border border-white border-opacity-50 shadow rounded-pill container-fluid mx-auto px-4"
       style="backdrop-filter: blur(12px); max-width: 1200px; display: flex; align-items: center;">
       <div style="flex: 1; display: flex; justify-content: flex-start;">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.html">
           <img src="logo.png" alt="Logo" style="height: 50px;">
         </a>
       </div>
@@ -149,7 +152,7 @@
       <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
         <ul class="navbar-nav gap-lg-4 text-center fs-5 align-items-center">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="">Meet the Team</a></li>
+          <li class="nav-item"><a class="nav-link active" href="team.html">Meet the Team</a></li>
           <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
           <li class="nav-item"><a class="nav-link" href="status.html">Oder Status</a></li>
           <li class="nav-item"><a class="nav-link" href="contacts.html">Contact</a></li>
@@ -164,6 +167,7 @@
       </div>
     </nav>
   </header>
+
   <main class="container my-5 py-5">
     <div class="row g-4 mb-5 justify-content-center">
       <div class="col-md-5">
@@ -183,16 +187,21 @@
         </div>
       </div>
     </div>
+
     <div class="text-center mb-5">
       <h1 class="display-4 fw-bold">Meet the Team</h1>
       <p class="text-muted fs-5">The individuals behind Pack & Prep</p>
     </div>
-    <div class="row g-4 justify-content-center mb-5 pb-5">
-      <div class="col-sm-6 col-lg-4 text-center">
-        <div class="glass-card h-100 d-flex flex-column align-items-center" style="transition-delay: 0.1s;">
+
+    <div class="row g-4 flex-column align-items-center mb-5 pb-5">
+      <div class="col-sm-10 col-lg-8">
+        <div class="glass-card text-center d-flex flex-column align-items-center" style="transition-delay: 0.1s;">
           <img src="customer1.png" class="member-img mb-3" alt="CEO">
           <h5 class="fw-bold mb-1">Mark Justin Miñoza</h5>
-          <p class="text-primary small fw-bold mb-3">Founder & CEO</p>
+          <p class="text-primary small fw-bold mb-2">Founder & CEO</p>
+          <p class="text-muted small mb-4 px-md-5">Leads the business and ensures everything is moving in the right
+            direction. Handles major decisions, sets goals, and guides the team toward growth while improving the
+            overall customer experience.</p>
           <div class="d-flex justify-content-center gap-3 social-icons mt-auto fs-5">
             <a href=""><i class="bi bi-facebook"></i></a>
             <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -201,11 +210,15 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-lg-4 text-center">
-        <div class="glass-card h-100 d-flex flex-column align-items-center" style="transition-delay: 0.2s;">
+
+      <div class="col-sm-10 col-lg-8">
+        <div class="glass-card text-center d-flex flex-column align-items-center" style="transition-delay: 0.2s;">
           <img src="customer2.png" class="member-img mb-3" alt="Operations Manager">
           <h5 class="fw-bold mb-1">Keneth D. Ngalot</h5>
-          <p class="text-primary small fw-bold mb-3">Co-Founder/Operations Manager</p>
+          <p class="text-primary small fw-bold mb-2">Co-Founder / Operations Manager</p>
+          <p class="text-muted small mb-4 px-md-5">Manages the daily operations of the business. Handles orders,
+            organizes products, and ensures everything runs smoothly. Also focuses on improving processes to deliver
+            efficient and reliable service to customers.</p>
           <div class="d-flex justify-content-center gap-3 social-icons mt-auto fs-5">
             <a href=""><i class="bi bi-facebook"></i></a>
             <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -215,39 +228,56 @@
         </div>
       </div>
     </div>
-    <hr class="my-5 opacity-0">
+
     <div class="text-center mb-5">
       <h2 class="display-6 fw-bold">Our Trusted Suppliers</h2>
       <p class="text-muted">We source only the best quality supplies for your academic packs</p>
     </div>
+
     <div class="row g-4 justify-content-center text-center">
-      <div class="col-6 col-md-3 col-lg-2">
-        <div class="glass-card py-4 px-2 d-flex align-items-center justify-content-center">
-          <img src="s1.png" class="supplier-logo img-fluid" title="Mongol">
+      <div class="col-md-6 col-lg-4">
+        <div class="glass-card h-100 p-4">
+          <img src="s1.png" class="supplier-logo img-fluid" alt="Mongol">
+          <h5 class="fw-bold">Mongol (Pencils)</h5>
+          <p class="text-muted small">A well-known pencil brand in the Philippines, valued for its durability and smooth
+            writing performance, ideal for students.</p>
         </div>
       </div>
-      <div class="col-6 col-md-3 col-lg-2">
-        <div class="glass-card py-4 px-2 d-flex align-items-center justify-content-center">
-          <img src="s2.png" class="supplier-logo img-fluid" title="Faber-Castell">
+      <div class="col-md-6 col-lg-4">
+        <div class="glass-card h-100 p-4">
+          <img src="s2.png" class="supplier-logo img-fluid" alt="Faber-Castell">
+          <h5 class="fw-bold">Faber-Castell (highlighters)</h5>
+          <p class="text-muted small">A trusted global brand known for vibrant and high-quality highlighters that help
+            students organize and emphasize important notes.</p>
         </div>
       </div>
-      <div class="col-6 col-md-3 col-lg-2">
-        <div class="glass-card py-4 px-2 d-flex align-items-center justify-content-center">
-          <img src="s3.png" class="supplier-logo img-fluid" title="Pilot G-TEC">
+      <div class="col-md-6 col-lg-4">
+        <div class="glass-card h-100 p-4">
+          <img src="s3.png" class="supplier-logo img-fluid" alt="Pilot G-TEC">
+          <h5 class="fw-bold">Pilot G-TEC (Pens)</h5>
+          <p class="text-muted small">Recognized for its precision and smooth ink flow, making it ideal for neat,
+            detailed, and everyday writing.</p>
         </div>
       </div>
-      <div class="col-6 col-md-3 col-lg-2">
-        <div class="glass-card py-4 px-2 d-flex align-items-center justify-content-center">
-          <img src="s4.png" class="supplier-logo img-fluid" title="Orions Notebooks">
+      <div class="col-md-6 col-lg-4">
+        <div class="glass-card h-100 p-4">
+          <img src="s4.png" class="supplier-logo img-fluid" alt="Orions">
+          <h5 class="fw-bold">Orions (Paper & Notes)</h5>
+          <p class="text-muted small">Offers reliable and affordable school supplies, with durable paper products suited
+            for daily academic use.</p>
         </div>
       </div>
-      <div class="col-6 col-md-3 col-lg-2">
-        <div class="glass-card py-4 px-2 d-flex align-items-center justify-content-center">
-          <img src="s5.png" class="supplier-logo img-fluid" title="Victory Yellow Pads">
+      <div class="col-md-6 col-lg-4">
+        <div class="glass-card h-100 p-4">
+          <img src="yellowpad.png" class="supplier-logo img-fluid" alt="Victory">
+          <h5 class="fw-bold">Victory Pads (Yellow Ppaer)</h5>
+          <p class="text-muted small">Victory is our go-to for high-grade yellow pads and intermediate papers, offering
+            the classic feel and reliability needed for exams.</p>
         </div>
       </div>
     </div>
   </main>
+
   <footer class="bg-light pt-5 pb-4 mt-auto border-top" id="contact">
     <div class="container">
       <div class="row justify-content-between g-4">
@@ -276,6 +306,7 @@
       <p class="text-center text-muted small mt-5 pt-4 border-top">© 2026 Pack & Prep. All rights reserved.</p>
     </div>
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     window.addEventListener('load', () => {
@@ -291,10 +322,7 @@
       const speed = 0.5;
       const borderColor = 'rgba(0, 0, 0, 0.05)';
       const hoverFillColor = 'rgba(255, 255, 255, 0.5)';
-      let gridOffset = {
-        x: 0,
-        y: 0
-      };
+      let gridOffset = { x: 0, y: 0 };
       let mouseX_val = -100;
       let mouseY_val = -100;
 

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pack & Prep</title>
+  <title>Pack & Prep - Track Order</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
@@ -127,7 +127,7 @@
       left: 0;
       height: 100%;
       background: var(--brand-blue);
-      width: 33%;
+      width: 0%;
       transition: width 0.8s ease;
     }
 
@@ -177,6 +177,7 @@
   <div id="squares-container">
     <canvas id="squaresCanvas"></canvas>
   </div>
+
   <header class="sticky-top pt-4 pb-2">
     <nav
       class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-25 border border-white border-opacity-50 shadow rounded-pill container-fluid mx-auto px-4"
@@ -191,7 +192,7 @@
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="team.html">Meet the Team</a></li>
           <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-          <li class="nav-item"><a class="nav-link active" href="">Oder Status</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#">Order Status</a></li>
           <li class="nav-item"><a class="nav-link" href="contacts.html">Contact</a></li>
         </ul>
       </div>
@@ -200,11 +201,13 @@
       </div>
     </nav>
   </header>
+
   <main class="container my-5 py-5 flex-grow-1 animate-load">
     <div class="text-center mb-5">
       <h2 class="fw-bold display-5">Track Your Order</h2>
       <p class="text-muted">Enter your Order ID to see the current status of your school supplies.</p>
     </div>
+
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="glass-card p-4 mb-4 shadow-sm">
@@ -216,17 +219,19 @@
             </button>
           </div>
         </div>
+
         <div id="trackingResult" class="glass-card p-5 shadow-sm d-none">
           <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
             <div>
-              <span class="badge bg-primary rounded-pill px-3 mb-2">In Transit</span>
-              <h4 class="fw-bold mb-0">Order #PNP-8821</h4>
+              <span class="badge bg-primary rounded-pill px-3 mb-2" id="statusBadge">Processing</span>
+              <h4 class="fw-bold mb-0" id="displayOrderId">Order #---</h4>
             </div>
-            <div class="text-lg-end">
-              <p class="text-muted small mb-0">Estimated Delivery</p>
-              <h5 class="fw-bold text-primary">March 22, 2026</h5>
+            <div class="text-lg-end" id="orderDateContainer">
+              <p class="text-muted small mb-0">Date Ordered</p>
+              <h5 class="fw-bold text-primary" id="displayOrderDate">---</h5>
             </div>
           </div>
+
           <div class="tracking-wrapper">
             <div class="tracking-line">
               <div class="tracking-progress" id="progressBar"></div>
@@ -248,19 +253,20 @@
               <p class="small fw-bold mb-0 step-text">Delivered</p>
             </div>
           </div>
+
           <hr class="my-4">
+
           <div class="row g-4">
-            <div class="col-md-6">
+            <div class="col-md-6" id="shippingAddressSection">
               <h6 class="fw-bold text-uppercase small text-muted mb-3">Shipping Address</h6>
-              <p class="mb-0 small fw-bold">Juan Dela Cruz</p>
-              <p class="text-muted small mb-0">123 University Ave, Brgy. Sto. Tomas</p>
-              <p class="text-muted small">Batangas, Philippines, 4234</p>
+              <p class="mb-0 small fw-bold" id="customerName">---</p>
+              <p class="text-muted small mb-0" id="fullAddress">---</p>
             </div>
             <div class="col-md-6">
               <h6 class="fw-bold text-uppercase small text-muted mb-3">Package Details</h6>
               <div class="d-flex align-items-center gap-2 mb-2">
                 <i class="bi bi-box2 text-primary"></i>
-                <span class="small">1x Class Starter Pack</span>
+                <span class="small" id="itemsSummary">---</span>
               </div>
               <div class="d-flex align-items-center gap-2">
                 <i class="bi bi-info-circle text-muted"></i>
@@ -269,6 +275,7 @@
             </div>
           </div>
         </div>
+
         <div id="trackPlaceholder" class="text-center py-5">
           <i class="bi bi-geo-alt fs-1 text-muted opacity-25"></i>
           <p class="text-muted mt-3">Enter your ID above to start tracking.</p>
@@ -276,6 +283,7 @@
       </div>
     </div>
   </main>
+
   <footer class="bg-light pt-5 pb-4 mt-auto border-top">
     <div class="container">
       <div class="row justify-content-between g-4">
@@ -298,46 +306,35 @@
       <p class="text-center text-muted small mt-5 pt-4 border-top">© 2026 Pack & Prep. All rights reserved.</p>
     </div>
   </footer>
+
   <script>
     function trackOrder() {
-      const id = document.getElementById('orderIdInput').value;
-      if (id.trim() === "") {
-        alert("Please enter a valid Order ID");
-        return;
-      }
-
-      document.getElementById('trackPlaceholder').classList.add('d-none');
-      document.getElementById('trackingResult').classList.remove('d-none');
-
-      document.getElementById('progressBar').style.width = "33%";
-    }
-
-    function trackOrder() {
-      const inputId = document.getElementById('orderIdInput').value.toUpperCase();
+      const inputId = document.getElementById('orderIdInput').value.toUpperCase().trim();
       const savedOrder = JSON.parse(localStorage.getItem('activeOrder'));
 
       if (!savedOrder || inputId !== savedOrder.orderId) {
-        alert("Order ID not found!");
+        alert("Order ID not found! Please check your ID and try again.");
         return;
       }
 
       document.getElementById('trackPlaceholder').classList.add('d-none');
       document.getElementById('trackingResult').classList.remove('d-none');
-      document.querySelector('#trackingResult h4').innerText = "Order #" + savedOrder.orderId;
 
-      const addressSection = document.querySelector('.col-md-6:first-child');
-      addressSection.innerHTML = `
-        <h6 class="fw-bold text-uppercase small text-muted mb-3">Shipping Address</h6>
-        <p class="mb-0 small fw-bold">${savedOrder.customerName}</p>
-        <p class="text-muted small mb-0">${savedOrder.shippingAddress}</p>
-    `;
+      document.getElementById('displayOrderId').innerText = "Order #" + savedOrder.orderId;
 
-      const itemsContainer = document.querySelector('.bi-box2 + span');
+      const orderDateRaw = savedOrder.orderDate ? new Date(savedOrder.orderDate) : new Date();
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = orderDateRaw.toLocaleDateString('en-US', options);
+      document.getElementById('displayOrderDate').innerText = formattedDate;
+
+      document.getElementById('customerName').innerText = savedOrder.customerName;
+      document.getElementById('fullAddress').innerText = savedOrder.shippingAddress;
+
       const itemsText = savedOrder.items.map(item => `${item.quantity}x ${item.name}`).join(', ');
-      itemsContainer.innerText = itemsText;
+      document.getElementById('itemsSummary').innerText = itemsText;
 
       const progress = document.getElementById('progressBar');
-      progress.style.width = "33%"; 
+      progress.style.width = "33%";
     }
 
     (function () {

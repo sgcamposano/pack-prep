@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pack & Prep</title>
+  <title>Pack & Prep | Cart</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet">
@@ -59,27 +59,13 @@
     }
 
     @keyframes slideUpFade {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(-20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     .animate-load {
@@ -151,21 +137,19 @@
   <div id="squares-container">
     <canvas id="squaresCanvas"></canvas>
   </div>
+
   <header class="sticky-top pt-4 pb-2">
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-25 border border-white border-opacity-50 shadow rounded-pill container-fluid mx-auto px-4"
+    <nav class="navbar navbar-expand-lg navbar-light bg-white bg-opacity-25 border border-white border-opacity-50 shadow rounded-pill container-fluid mx-auto px-4"
       style="backdrop-filter: blur(12px); max-width: 1200px; display: flex; align-items: center;">
       <div style="flex: 1; display: flex; justify-content: flex-start;">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.html">
           <img src="logo.png" alt="Logo" style="height: 50px;">
         </a>
       </div>
       <div class="d-lg-none d-flex align-items-center gap-3">
         <a href="cart.html" class="position-relative text-decoration-none text-primary">
           <i class="bi bi-cart3 fs-4"></i>
-          <span id="cart-count-mobile"
-            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-            style="font-size: 0.6rem; display: none;">0</span>
+          <span id="cart-count-mobile" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem; display: none;">0</span>
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -176,31 +160,32 @@
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="team.html">Meet the Team</a></li>
           <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="status.html">Oder Status</a></li>
+          <li class="nav-item"><a class="nav-link" href="status.html">Order Status</a></li>
           <li class="nav-item"><a class="nav-link" href="contacts.html">Contact</a></li>
         </ul>
       </div>
       <div class="d-none d-lg-flex" style="flex: 1; justify-content: flex-end;">
-        <a href="cart.html" class="position-relative p-2 text-decoration-none" style="display: inline-block;">
+        <a href="cart.html" class="position-relative p-2 text-decoration-none">
           <i class="bi bi-cart3 fs-4 text-dark"></i>
-          <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-            style="font-size: 0.7rem; display: none;">0</span>
+          <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem; display: none;">0</span>
         </a>
       </div>
     </nav>
   </header>
+
   <main class="container my-5 py-5 flex-grow-1 animate-load">
     <div class="d-flex align-items-center mb-4">
-      <a href="products.html"></a>
       <h2 class="fw-bold mb-0 display-6">YOUR CART</h2>
     </div>
+
     <div class="row g-4">
       <div class="col-lg-8">
         <div class="card border-0 shadow-sm rounded-4 p-4 bg-white bg-opacity-75" style="backdrop-filter: blur(5px);">
           <div id="cart-items-container">
-          </div>
+            </div>
         </div>
       </div>
+
       <div class="col-lg-4">
         <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100" style="position: sticky; top: 100px;">
           <h4 class="fw-bold mb-4">Order Summary</h4>
@@ -216,8 +201,7 @@
             <span class="fw-bold fs-5">Total</span>
             <span id="cart-total" class="fw-bold fs-4">₱0.00</span>
           </div>
-          <button
-            class="btn btn-custom-blue w-100 rounded-pill py-3 fw-bold d-flex justify-content-between align-items-center px-4"
+          <button class="btn btn-custom-blue w-100 rounded-pill py-3 fw-bold d-flex justify-content-between align-items-center px-4"
             data-bs-toggle="modal" data-bs-target="#checkoutModal">
             Go to Checkout
             <i class="bi bi-arrow-right"></i>
@@ -226,6 +210,7 @@
       </div>
     </div>
   </main>
+
   <div class="modal fade" id="checkoutModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0 shadow rounded-4">
@@ -244,6 +229,10 @@
               <textarea class="form-control rounded-4 border-light bg-light px-3" rows="2" required></textarea>
             </div>
             <div class="mb-3">
+              <label class="form-label small fw-bold text-muted">Phone Number</label>
+              <input type="tel" class="form-control rounded-pill border-light bg-light px-3" placeholder="09xxxxxxxxx" required>
+            </div>
+            <div class="mb-4">
               <label class="form-label small fw-bold text-muted">Payment Method</label>
               <select class="form-select rounded-pill border-light bg-light px-3">
                 <option value="cod">Cash on Delivery</option>
@@ -254,17 +243,27 @@
                 <option value="gotyme">Gotyme</option>
               </select>
             </div>
-            <hr class="my-4">
-            <div class="d-flex justify-content-between mb-3">
+
+            <div class="d-flex justify-content-between mb-1">
+              <span class="text-muted">Subtotal:</span>
+              <span id="modal-subtotal" class="fw-bold">₱0.00</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3 border-bottom pb-2">
+              <span class="text-muted small">Delivery Fee:</span>
+              <span class="fw-bold small">₱0.00</span>
+            </div>
+            <div class="d-flex justify-content-between mb-4">
               <span class="fw-bold">Total Amount:</span>
               <span id="modal-total" class="fw-bold text-primary fs-5">₱0.00</span>
             </div>
+            
             <button type="submit" class="btn btn-custom-blue w-100 py-3 fw-bold rounded-pill">Confirm Order</button>
           </form>
         </div>
       </div>
     </div>
   </div>
+
   <footer class="bg-light pt-5 pb-4 mt-auto border-top">
     <div class="container">
       <div class="row justify-content-between g-4">
@@ -273,8 +272,7 @@
             <img src="logo.png" alt="Logo" height="40" class="me-2">
             <h4 class="fw-bold mb-0">Pack & Prep</h4>
           </div>
-          <p class="text-muted">Empowering students with quality supplies. Preparation is the key to academic success.
-          </p>
+          <p class="text-muted">Empowering students with quality supplies. Preparation is the key to academic success.</p>
         </div>
         <div class="col-lg-auto">
           <h6 class="fw-bold mb-3">Quick Links</h6>
@@ -287,35 +285,61 @@
       <p class="text-center text-muted small mt-5 pt-4 border-top">© 2026 Pack & Prep. All rights reserved.</p>
     </div>
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       loadCart();
+      
       const checkoutForm = document.getElementById('checkoutForm');
       if (checkoutForm) {
         checkoutForm.addEventListener('submit', (e) => {
           e.preventDefault();
-          alert("Order Confirmed! Thank you for shopping with Pack & Prep.");
+          
+          const fullName = e.target.querySelector('input[type="text"]').value;
+          const address = e.target.querySelector('textarea').value;
+          const orderId = "PNP-" + Math.floor(10000 + Math.random() * 90000);
+          const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
+
+          const orderData = {
+            orderId: orderId,
+            customerName: fullName,
+            shippingAddress: address,
+            items: cart,
+            status: "Processing",
+            date: new Date().toLocaleDateString()
+          };
+
+          localStorage.setItem('activeOrder', JSON.stringify(orderData));
+          alert("Order Confirmed! Your Order ID is: " + orderId);
           localStorage.removeItem('shoppingCart');
-          window.location.href = 'index.html';
+          window.location.href = 'status.html';
         });
       }
     });
+
     function loadCart() {
       const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
       const container = document.getElementById('cart-items-container');
+      
+      // Selectors for both Main Page and Modal
       const subtotalEl = document.getElementById('cart-subtotal');
       const totalEl = document.getElementById('cart-total');
+      const modalSubtotalEl = document.getElementById('modal-subtotal');
       const modalTotalEl = document.getElementById('modal-total');
+      
       container.innerHTML = '';
       let subtotal = 0;
+
       if (cart.length === 0) {
         container.innerHTML = '<p class="text-center text-muted py-5">Your cart is empty.</p>';
         subtotalEl.innerText = '₱0.00';
         totalEl.innerText = '₱0.00';
+        if (modalSubtotalEl) modalSubtotalEl.innerText = '₱0.00';
         if (modalTotalEl) modalTotalEl.innerText = '₱0.00';
         return;
       }
+
       cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
@@ -343,10 +367,18 @@
             </div>
           </div>`;
       });
-      subtotalEl.innerText = '₱' + subtotal.toFixed(2);
-      totalEl.innerText = '₱' + subtotal.toFixed(2);
-      if (modalTotalEl) modalTotalEl.innerText = '₱' + subtotal.toFixed(2);
+
+      const formattedTotal = '₱' + subtotal.toFixed(2);
+      
+      // Update Main Summary
+      subtotalEl.innerText = formattedTotal;
+      totalEl.innerText = formattedTotal;
+      
+      // Update Modal Summary
+      if (modalSubtotalEl) modalSubtotalEl.innerText = formattedTotal;
+      if (modalTotalEl) modalTotalEl.innerText = formattedTotal;
     }
+
     function changeQty(index, change) {
       let cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
       if (cart[index].quantity + change > 0) {
@@ -355,6 +387,7 @@
         loadCart();
       }
     }
+
     function removeItemWithAnimation(index) {
       const row = document.getElementById(`item-${index}`);
       if (row) {
@@ -368,32 +401,7 @@
       }
     }
 
-    document.getElementById('checkoutForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const fullName = e.target.querySelector('input[type="text"]').value;
-      const address = e.target.querySelector('textarea').value;
-
-      const orderId = "PNP-" + Math.floor(10000 + Math.random() * 90000);
-
-      const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
-
-      const orderData = {
-        orderId: orderId,
-        customerName: fullName,
-        shippingAddress: address,
-        items: cart,
-        status: "Processing",
-        date: new Date().toLocaleDateString()
-      };
-
-      localStorage.setItem('activeOrder', JSON.stringify(orderData));
-
-      alert("Order Confirmed! Your Order ID is: " + orderId);
-      localStorage.removeItem('shoppingCart');
-      window.location.href = 'status.html';
-    });
-
+    // Animated Background Script
     (function () {
       const canvas = document.getElementById('squaresCanvas');
       const ctx = canvas.getContext('2d');

@@ -249,7 +249,7 @@
               <span id="modal-subtotal" class="fw-bold">₱0.00</span>
             </div>
             <div class="d-flex justify-content-between mb-3 border-bottom pb-2">
-              <span class="text-muted small">Delivery Fee:</span>
+              <span class="text-muted small">Shipping Fee:</span>
               <span class="fw-bold small">₱0.00</span>
             </div>
             <div class="d-flex justify-content-between mb-4">
@@ -322,7 +322,6 @@
       const cart = JSON.parse(localStorage.getItem('shoppingCart')) || [];
       const container = document.getElementById('cart-items-container');
       
-      // Selectors for both Main Page and Modal
       const subtotalEl = document.getElementById('cart-subtotal');
       const totalEl = document.getElementById('cart-total');
       const modalSubtotalEl = document.getElementById('modal-subtotal');
@@ -370,11 +369,9 @@
 
       const formattedTotal = '₱' + subtotal.toFixed(2);
       
-      // Update Main Summary
       subtotalEl.innerText = formattedTotal;
       totalEl.innerText = formattedTotal;
       
-      // Update Modal Summary
       if (modalSubtotalEl) modalSubtotalEl.innerText = formattedTotal;
       if (modalTotalEl) modalTotalEl.innerText = formattedTotal;
     }
@@ -401,7 +398,6 @@
       }
     }
 
-    // Animated Background Script
     (function () {
       const canvas = document.getElementById('squaresCanvas');
       const ctx = canvas.getContext('2d');
